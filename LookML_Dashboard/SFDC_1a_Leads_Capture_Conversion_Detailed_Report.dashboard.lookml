@@ -3,7 +3,7 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  preferred_slug: c4qpwEnoGO4Hb8eMymKPLt
+  preferred_slug: ibJZg79aBQeyZ9tmZT0Yqk
   elements:
   - title: Leads Capture & Conversion Details
     name: Leads Capture & Conversion Details
@@ -20,9 +20,15 @@
         desc]
     limit: 5000
     total: true
-    dynamic_fields: [{category: dimension, expression: 'diff_hours(${leads_capture_conversion.lead_created_time},${leads_capture_conversion.lead_first_response_time})',
-        label: Lead Response Time (hours), value_format: !!null '', value_format_name: !!null '',
-        dimension: lead_response_time_hours, _kind_hint: dimension, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_hours(${leads_capture_conversion.lead_created_time},${leads_capture_conversion.lead_first_response_time})
+      label: Lead Response Time (hours)
+      value_format:
+      value_format_name:
+      dimension: lead_response_time_hours
+      _kind_hint: dimension
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -43,7 +49,6 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      leads_capture_conversion.user_full_name: Lead Owner
       leads_capture_conversion.Sum_of_Total_sale_amount: Lead Value/Amount
       leads_capture_conversion.Sum_of_Total_sale_amount_conv: Lead Value/Amount
       leads_capture_conversion.lead_name: Lead First & Last Name
@@ -53,7 +58,6 @@
         is_active: false
     truncate_column_names: false
     defaults_version: 1
-    series_types: {}
     hidden_fields: [leads_capture_conversion.lead_id]
     y_axes: []
     hidden_pivots: {}
@@ -73,7 +77,7 @@
   - name: Lead Created Date
     title: Lead Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:
@@ -92,7 +96,7 @@
     required: true
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: cortex_salesforce
     explore: leads_capture_conversion
     listens_to_filters: []

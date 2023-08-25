@@ -21,7 +21,6 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -131,9 +130,15 @@
         desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: '', label: Count of Leads Created,
-        based_on: leads_capture_conversion.lead_id, _kind_hint: measure, measure: count_of_leads_created,
-        type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: Count of Leads Created
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: count_of_leads_created
+      type: count_distinct
+      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -246,9 +251,15 @@
     limit: 500
     column_limit: 50
     total: true
-    dynamic_fields: [{category: measure, expression: '', label: 'Total # of Leads',
-        based_on: leads_capture_conversion.lead_id, _kind_hint: measure, measure: total_of_leads,
-        type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: 'Total # of Leads'
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: total_of_leads
+      type: count_distinct
+      _type_hint: number
     value_labels: legend
     label_type: labPer
     inner_radius: 60
@@ -268,7 +279,6 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     note_state: collapsed
@@ -296,11 +306,22 @@
     sorts: [leads_capture_conversion.lead_created_month desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: table_calculation, expression: "${leads_capture_conversion.count_of_lead_Id_converted}/${count_of_lead_id_2}*100",
-        label: Percentage of Leads Converted, value_format: 0.00 "%", value_format_name: __custom,
-        _kind_hint: measure, table_calculation: percentage_of_leads_converted, _type_hint: number},
-      {measure: count_of_lead_id_2, based_on: leads_capture_conversion.lead_id, expression: '',
-        label: Count of Lead ID, type: count_distinct, _kind_hint: measure, _type_hint: number}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${leads_capture_conversion.count_of_lead_Id_converted}/${count_of_lead_id_2}*100"
+      label: Percentage of Leads Converted
+      value_format: 0.00 "%"
+      value_format_name: __custom
+      _kind_hint: measure
+      table_calculation: percentage_of_leads_converted
+      _type_hint: number
+    - measure: count_of_lead_id_2
+      based_on: leads_capture_conversion.lead_id
+      expression: ''
+      label: Count of Lead ID
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -335,13 +356,11 @@
     x_axis_label: Month
     font_size: '10'
     series_types:
-      count_of_converted_lead_id: area
       leads_capture_conversion.count_of_lead_Id_converted: area
     series_colors:
       percentage_of_leads_converted: "#000000"
       leads_capture_conversion.count_of_lead_Id_converted: "#7CB342"
     series_labels:
-      count_of_converted_lead_id: Leads Converted
       percentage_of_leads_converted: Lead Conversion Rate
       leads_capture_conversion.count_of_lead_Id_converted: Leads Converted
     x_axis_datetime_label: "%b %y"
@@ -371,15 +390,35 @@
     sorts: [leads_converted desc 0]
     limit: 10
     column_limit: 50
-    dynamic_fields: [{category: table_calculation, expression: "(${leads_converted}/${leads_created})\
-          \ * 100", label: Lead Conversion Rate, value_format: 0.00 "%", value_format_name: __custom,
-        _kind_hint: measure, table_calculation: lead_conversion_rate, _type_hint: number},
-      {category: measure, expression: '', label: Leads Converted, based_on: leads_capture_conversion.lead_id,
-        _kind_hint: measure, measure: leads_converted, type: count_distinct, _type_hint: number,
-        filters: {leads_capture_conversion.is_converted: 'Yes'}}, {category: measure,
-        expression: !!null '', label: Leads Created, value_format: !!null '', value_format_name: !!null '',
-        based_on: leads_capture_conversion.lead_id, _kind_hint: measure, measure: leads_created,
-        type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "(${leads_converted}/${leads_created}) * 100"
+      label: Lead Conversion Rate
+      value_format: 0.00 "%"
+      value_format_name: __custom
+      _kind_hint: measure
+      table_calculation: lead_conversion_rate
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Leads Converted
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: leads_converted
+      type: count_distinct
+      _type_hint: number
+      filters:
+        leads_capture_conversion.is_converted: 'Yes'
+    - category: measure
+      expression:
+      label: Leads Created
+      value_format:
+      value_format_name:
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: leads_created
+      type: count_distinct
+      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -458,21 +497,51 @@
     sorts: [avg_lead_response_time_hours desc, lead_conversion_rate desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: table_calculation, expression: "(${total_of_leads_converted}/${total_of_leads})*100",
-        label: 'Lead Conversion Rate ', value_format: 0.00 "%", value_format_name: __custom,
-        _kind_hint: measure, table_calculation: lead_conversion_rate, _type_hint: number},
-      {category: dimension, expression: 'diff_hours(${leads_capture_conversion.lead_created_time},${leads_capture_conversion.lead_first_response_time})',
-        label: Lead Response Time (hours), value_format: !!null '', value_format_name: !!null '',
-        dimension: lead_response_time_hours, _kind_hint: dimension, _type_hint: number},
-      {category: measure, expression: '', label: Avg. Lead Response Time (hours),
-        value_format: 0.0 "Hrs.", value_format_name: __custom, based_on: lead_response_time_hours,
-        _kind_hint: measure, measure: avg_lead_response_time_hours, type: average,
-        _type_hint: number}, {category: measure, expression: '', label: 'Total # of
-          Leads', based_on: leads_capture_conversion.lead_id, _kind_hint: measure,
-        measure: total_of_leads, type: count_distinct, _type_hint: number}, {category: measure,
-        expression: '', label: 'Total # of Leads Converted', based_on: leads_capture_conversion.lead_id,
-        _kind_hint: measure, measure: total_of_leads_converted, type: count_distinct,
-        _type_hint: number, filters: {leads_capture_conversion.is_converted: 'Yes'}}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "(${total_of_leads_converted}/${total_of_leads})*100"
+      label: 'Lead Conversion Rate '
+      value_format: 0.00 "%"
+      value_format_name: __custom
+      _kind_hint: measure
+      table_calculation: lead_conversion_rate
+      _type_hint: number
+    - category: dimension
+      expression: diff_hours(${leads_capture_conversion.lead_created_time},${leads_capture_conversion.lead_first_response_time})
+      label: Lead Response Time (hours)
+      value_format:
+      value_format_name:
+      dimension: lead_response_time_hours
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Avg. Lead Response Time (hours)
+      value_format: 0.0 "Hrs."
+      value_format_name: __custom
+      based_on: lead_response_time_hours
+      _kind_hint: measure
+      measure: avg_lead_response_time_hours
+      type: average
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: 'Total # of Leads'
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: total_of_leads
+      type: count_distinct
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: 'Total # of Leads Converted'
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: total_of_leads_converted
+      type: count_distinct
+      _type_hint: number
+      filters:
+        leads_capture_conversion.is_converted: 'Yes'
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -493,7 +562,6 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      leads_capture_conversion.user_full_name: Lead Owner
       avg_lead_response_time_hours: Avg. Response Time
       leads_capture_conversion.lead_owner_name: Lead Owner
     series_cell_visualizations:
@@ -528,7 +596,6 @@
     trellis: ''
     stacking: ''
     legend_position: center
-    series_types: {}
     point_style: circle
     series_colors:
       lead_conversion_rate: "#80868B"
@@ -570,13 +637,30 @@
     type: single_value
     fields: [leads_capture_conversion.count_of_opportunity_id, leads_capture_conversion.count_of_lead_Id_converted]
     limit: 500
-    dynamic_fields: [{category: measure, expression: '', label: Total Opportunities,
-        based_on: leads_capture_conversion.opportunity_id, _kind_hint: measure, measure: total_opportunities,
-        type: count_distinct, _type_hint: number}, {measure: count_of_lead_first_name,
-        based_on: leads_capture_conversion.lead_first_name, expression: '', label: Count
-          of Lead First Name, type: count_distinct, _kind_hint: measure, _type_hint: number},
-      {category: measure, expression: '', label: Total Leads, based_on: leads_capture_conversion.lead_id,
-        _kind_hint: measure, measure: total_leads, type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: Total Opportunities
+      based_on: leads_capture_conversion.opportunity_id
+      _kind_hint: measure
+      measure: total_opportunities
+      type: count_distinct
+      _type_hint: number
+    - measure: count_of_lead_first_name
+      based_on: leads_capture_conversion.lead_first_name
+      expression: ''
+      label: Count of Lead First Name
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Total Leads
+      based_on: leads_capture_conversion.lead_id
+      _kind_hint: measure
+      measure: total_leads
+      type: count_distinct
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -615,7 +699,6 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     note_state: collapsed
@@ -639,18 +722,30 @@
     explore: leads_capture_conversion
     type: single_value
     fields: [leads_capture_conversion.Sum_of_Total_sale_amount]
-    filters: {}
     limit: 500
     column_limit: 50
-    dynamic_fields: [{args: [leads_capture_conversion.Sum_of_Total_sale_amount], calculation_type: percent_of_previous,
-        category: table_calculation, based_on: leads_capture_conversion.Sum_of_Total_sale_amount,
-        label: Percent of previous - Leads Capture Conversion Sum of Total Sale Amount,
-        source_field: leads_capture_conversion.Sum_of_Total_sale_amount, table_calculation: percent_of_previous_leads_capture_conversion_sum_of_total_sale_amount,
-        value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        _type_hint: number, is_disabled: true}, {category: measure, label: Filtered
-          leads_capture_conversion.Sum_of_Total_sale_amount, based_on: leads_capture_conversion.Sum_of_Total_sale_amount,
-        _kind_hint: measure, measure: filtered_leads_capture_conversionsum_of_total_sale_amount,
-        type: count_distinct, _type_hint: number, filters: {}}]
+    dynamic_fields:
+    - args:
+      - leads_capture_conversion.Sum_of_Total_sale_amount
+      calculation_type: percent_of_previous
+      category: table_calculation
+      based_on: leads_capture_conversion.Sum_of_Total_sale_amount
+      label: Percent of previous - Leads Capture Conversion Sum of Total Sale Amount
+      source_field: leads_capture_conversion.Sum_of_Total_sale_amount
+      table_calculation: percent_of_previous_leads_capture_conversion_sum_of_total_sale_amount
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+      is_disabled: true
+    - category: measure
+      label: Filtered leads_capture_conversion.Sum_of_Total_sale_amount
+      based_on: leads_capture_conversion.Sum_of_Total_sale_amount
+      _kind_hint: measure
+      measure: filtered_leads_capture_conversionsum_of_total_sale_amount
+      type: count_distinct
+      _type_hint: number
+      filters: {}
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -744,14 +839,12 @@
     x_axis_zoom: true
     y_axis_zoom: true
     font_size: '10'
-    series_types: {}
     series_colors: {}
     series_labels:
       leads_capture_conversion.count_of_lead_Id_status_new: New
       leads_capture_conversion.count_of_lead_Id_status_contacted: Contacted
       leads_capture_conversion.count_of_lead_Id_status_nurturing: Nurturing
       leads_capture_conversion.count_of_lead_Id_status_qualified: Qualified
-      leads_capture_conversion.count_of_lead_Id_status_disqualified: Disqualified
       leads_capture_conversion.count_of_lead_Id_status_unqualified: Unqualified
     x_axis_datetime_label: "%b %y"
     show_null_points: true
@@ -777,7 +870,7 @@
   - name: Lead Created Date
     title: Lead Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:
