@@ -12,9 +12,15 @@
     type: single_value
     fields: [opportunity_pipeline.count_of_opportunity_id_closed_won, total_opportunities]
     limit: 500
-    dynamic_fields: [{category: measure, expression: '', label: 'Total # Opportunities',
-        based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure, measure: total_opportunities,
-        type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: 'Total # Opportunities'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_opportunities
+      type: count_distinct
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -84,9 +90,15 @@
     type: single_value
     fields: [opportunity_pipeline.count_of_opportunity_id_open, total_opportunities]
     limit: 500
-    dynamic_fields: [{category: measure, expression: '', label: 'Total # Opportunities',
-        based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure, measure: total_opportunities,
-        type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: 'Total # Opportunities'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_opportunities
+      type: count_distinct
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -172,7 +184,6 @@
         tickDensity: default, tickDensityCustom: 5, type: linear}]
     x_axis_label: Month
     font_size: '10'
-    series_types: {}
     series_colors: {}
     series_labels:
       opportunity_pipeline.count_of_opportunity_id_closed_won: Closed - Won
@@ -215,9 +226,17 @@
     sorts: [total_of_opportunities desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: '', label: 'Total # of Opportunities',
-        based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure, measure: total_of_opportunities,
-        type: count_distinct, _type_hint: number, filters: {opportunity_pipeline.opportunity_is_closed: 'No'}}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: 'Total # of Opportunities'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_of_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        opportunity_pipeline.opportunity_is_closed: 'No'
     value_labels: legend
     label_type: labPer
     inner_radius: 60
@@ -246,7 +265,6 @@
     show_null_points: true
     interpolation: linear
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     note_state: collapsed
@@ -272,16 +290,36 @@
     sorts: [win_perceentage desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: table_calculation, expression: "(${total_of_opportunities_closed_won}/${total_of_opportunities_closed})*100",
-        label: Win Perceentage, value_format: 0.00 "%", value_format_name: __custom,
-        _kind_hint: measure, table_calculation: win_perceentage, _type_hint: number},
-      {category: measure, expression: '', label: 'Total # of Opportunities (Closed)',
-        based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure, measure: total_of_opportunities_closed,
-        type: count_distinct, _type_hint: number, filters: {opportunity_pipeline.opportunity_is_closed: 'Yes'}},
-      {category: measure, expression: '', label: 'Total # of Opportunities (Closed
-          - Won)', based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure,
-        measure: total_of_opportunities_closed_won, type: count_distinct, _type_hint: number,
-        filters: {opportunity_pipeline.opportunity_is_won: 'Yes', opportunity_pipeline.opportunity_is_closed: 'Yes'}}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "(${total_of_opportunities_closed_won}/${total_of_opportunities_closed})*100"
+      label: Win Perceentage
+      value_format: 0.00 "%"
+      value_format_name: __custom
+      _kind_hint: measure
+      table_calculation: win_perceentage
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: 'Total # of Opportunities (Closed)'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_of_opportunities_closed
+      type: count_distinct
+      _type_hint: number
+      filters:
+        opportunity_pipeline.opportunity_is_closed: 'Yes'
+    - category: measure
+      expression: ''
+      label: 'Total # of Opportunities (Closed - Won)'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_of_opportunities_closed_won
+      type: count_distinct
+      _type_hint: number
+      filters:
+        opportunity_pipeline.opportunity_is_won: 'Yes'
+        opportunity_pipeline.opportunity_is_closed: 'Yes'
     value_labels: legend
     label_type: labPer
     inner_radius: 60
@@ -303,7 +341,6 @@
     defaults_version: 1
     hidden_fields: [total_of_opportunities_1, total_of_opportunities_won, total_of_opportunities_closed_won,
       total_of_opportunities_closed]
-    series_types: {}
     y_axes: []
     note_state: collapsed
     note_display: hover
@@ -376,14 +413,12 @@
       first_last: first
       num_rows: '10'
     label_value_format: 0.00,, "M"
-    series_types: {}
     series_colors:
       opportunity_pipeline.sum_of_total_sale_amount_conv: "#7CB342"
       opportunity_pipeline_new.sum_of_total_sale_amount: "#7CB342"
       opportunity_pipeline.sum_of_total_sale_amount: "#7CB342"
     series_labels:
       opportunity_pipeline.sum_of_total_sale_amount_conv: Opportunity Value
-      opportunity_pipeline_new.sum_of_total_sale_amount: Opportunity Value
     show_row_numbers: true
     transpose: false
     truncate_text: true
@@ -497,7 +532,6 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -512,7 +546,6 @@
     explore: opportunity_pipeline
     type: single_value
     fields: [opportunity_pipeline.sum_of_total_sale_amount]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -549,7 +582,6 @@
     explore: opportunity_pipeline
     type: single_value
     fields: [opportunity_pipeline.sum_of_total_sale_amount_open, opportunity_pipeline.sum_of_total_sale_amount]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -586,7 +618,6 @@
     explore: opportunity_pipeline
     type: single_value
     fields: [opportunity_pipeline.sum_of_total_sale_amount_closed_won, opportunity_pipeline.sum_of_total_sale_amount]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -623,7 +654,6 @@
     explore: opportunity_pipeline
     type: single_value
     fields: [opportunity_pipeline.sum_of_total_sale_amount_closed_lost, opportunity_pipeline.sum_of_total_sale_amount]
-    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -660,13 +690,20 @@
     explore: opportunity_pipeline
     type: looker_bar
     fields: [won_opportunities_value, opportunity_pipeline.opportunity_owner_name]
-    filters: {}
     sorts: [won_opportunities_value desc]
     limit: 10
     column_limit: 50
-    dynamic_fields: [{category: measure, label: Won Opportunities Value, based_on: opportunity_pipeline.sum_of_total_sale_amount,
-        _kind_hint: measure, measure: won_opportunities_value, type: sum, _type_hint: number,
-        filters: {opportunity_pipeline.opportunity_is_closed: 'Yes', opportunity_pipeline.opportunity_is_won: 'Yes'}}]
+    dynamic_fields:
+    - category: measure
+      label: Won Opportunities Value
+      based_on: opportunity_pipeline.sum_of_total_sale_amount
+      _kind_hint: measure
+      measure: won_opportunities_value
+      type: sum
+      _type_hint: number
+      filters:
+        opportunity_pipeline.opportunity_is_closed: 'Yes'
+        opportunity_pipeline.opportunity_is_won: 'Yes'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -701,14 +738,10 @@
     x_axis_label: Opportunity Owner
     x_axis_zoom: true
     y_axis_zoom: true
-    series_types: {}
     series_colors:
       actual_value: "#1A73E8"
       opportunity_pipeline.sum_of_actual_amount_conv: "#b9d1ff"
       opportunity_pipeline.sum_of_total_sale_amount_conv: "#1A73E8"
-    series_labels:
-      opportunity_pipeline.sum_of_actual_amount_conv: Target Value
-      opportunity_pipeline.sum_of_total_sale_amount_conv: Actual Value
     defaults_version: 1
     hidden_fields: []
     hidden_pivots: {}
@@ -735,7 +768,6 @@
       opportunity_pipeline.sum_of_total_sale_amount_closed_won, opportunity_pipeline.sum_of_total_sale_amount_open,
       opportunity_pipeline.sum_of_total_sale_amount_closed_lost]
     fill_fields: [opportunity_pipeline.opportunity_created_month]
-    filters: {}
     sorts: [opportunity_pipeline.opportunity_created_month desc]
     limit: 500
     column_limit: 50
@@ -786,15 +818,9 @@
     y_axis_zoom: true
     font_size: '10'
     series_types:
-      total_value_closed_won: line
-      total_value_open: line
-      total_value_closed_lost: line
       opportunity_pipeline.sum_of_total_sale_amount_conv_closed_won: line
       opportunity_pipeline.sum_of_total_sale_amount_conv_open: line
       opportunity_pipeline.sum_of_total_sale_amount_conv_closed_lost: line
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_won: line
-      opportunity_pipeline_new.sum_of_total_sale_amount_open: line
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_lost: line
       opportunity_pipeline.sum_of_total_sale_amount_open: line
       opportunity_pipeline.sum_of_total_sale_amount_closed_lost: line
       opportunity_pipeline.sum_of_total_sale_amount_closed_won: line
@@ -810,7 +836,6 @@
       opportunity_pipeline.sum_of_total_sale_amount_open: "#F9AB00"
       opportunity_pipeline.sum_of_total_sale_amount_closed_lost: "#E52592"
     series_labels:
-      total_value_open: Total Value (Open)
       opportunity_pipeline.sum_of_total_sale_amount_conv: Total Value
       opportunity_pipeline.sum_of_total_sale_amount_conv_closed_won: Total Value Closed
         (Won)
@@ -818,24 +843,11 @@
       opportunity_pipeline.sum_of_total_sale_amount_conv_closed_lost: Total Value
         Closed (Lost)
       opportunity_pipeline.sum_of_total_sale_amount: Total Value
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_won: Total Value Closed
-        (Won)
-      opportunity_pipeline_new.sum_of_total_sale_amount_open: Total Value Open
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_lost: Total Value Closed
-        (Lost)
       opportunity_pipeline.sum_of_total_sale_amount_closed_won: Total Value Closed
         (Won)
       opportunity_pipeline.sum_of_total_sale_amount_open: Total Value Open
       opportunity_pipeline.sum_of_total_sale_amount_closed_lost: Total Value Closed
         (Lost)
-    series_point_styles:
-      total_value: square
-      total_value_closed_won: diamond
-      total_value_closed_lost: triangle-down
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_won: diamond
-      opportunity_pipeline_new.sum_of_total_sale_amount_closed_lost: triangle-down
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv_closed_won: diamond
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv_closed_lost: triangle-down
     label_color: ["#80868B"]
     x_axis_datetime_label: "%b %y"
     custom_color_enabled: true
@@ -917,21 +929,15 @@
     font_size: '10'
     series_types:
       opportunity_pipeline.sum_of_total_sale_amount_conv: line
-      opportunity_pipeline_new.sum_of_total_sale_amount: line
       opportunity_pipeline.sum_of_total_sale_amount: line
     series_colors:
       opportunity_pipeline.sum_of_total_sale_amount_conv: "#000000"
       opportunity_pipeline_new.sum_of_total_sale_amount: "#000000"
       opportunity_pipeline.sum_of_total_sale_amount: "#000000"
     series_labels:
-      count_of_opportunity_id_2: Open Opportunities
       opportunity_pipeline.count_of_opportunity_id_open: Open Opportunities
       opportunity_pipeline.sum_of_total_sale_amount_conv: Opportunity Value (Open)
-      opportunity_pipeline_new.sum_of_total_sale_amount: Opportunity Value (Open)
       opportunity_pipeline.sum_of_total_sale_amount: Opportunity Value (Open)
-    series_point_styles:
-      opportunity_pipeline_new.sum_of_total_sale_amount: diamond
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv: diamond
     show_row_numbers: true
     transpose: false
     truncate_text: true
@@ -971,14 +977,19 @@
       opportunity_pipeline.count_of_opportunity_id_closed_won, opportunity_pipeline.sum_of_total_sale_amount_closed_won,
       opportunity_pipeline.count_of_opportunity_id_closed_lost, opportunity_pipeline.sum_of_total_sale_amount_closed_lost,
       opportunity_pipeline.count_of_opportunity_id_open, opportunity_pipeline.sum_of_total_sale_amount_open]
-    filters: {}
     sorts: [opportunity_pipeline.count_of_opportunity_id desc, opportunity_pipeline.sum_of_total_sale_amount_open
         desc]
     limit: 5000
     column_limit: 50
-    dynamic_fields: [{category: table_calculation, expression: "(${opportunity_pipeline.count_of_opportunity_id_closed_won}/(${opportunity_pipeline.count_of_opportunity_id_closed_won}+${opportunity_pipeline.count_of_opportunity_id_closed_lost}))*100",
-        label: Opportunity Win Percentage, value_format: 0.00 "%", value_format_name: __custom,
-        _kind_hint: measure, table_calculation: opportunity_win_percentage, _type_hint: number}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "(${opportunity_pipeline.count_of_opportunity_id_closed_won}/(${opportunity_pipeline.count_of_opportunity_id_closed_won}+${opportunity_pipeline.count_of_opportunity_id_closed_lost}))*100"
+      label: Opportunity Win Percentage
+      value_format: 0.00 "%"
+      value_format_name: __custom
+      _kind_hint: measure
+      table_calculation: opportunity_win_percentage
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -999,7 +1010,6 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      opportunity_pipeline.user_full_name: Opportunity Owner
       opportunity_pipeline.count_of_opportunity_id: Total Opportunities
       opportunity_pipeline.sum_of_total_sale_amount_conv: Total Opportunity Value
       opportunity_pipeline.count_of_opportunity_id_closed_won: Opportunities Closed
@@ -1019,24 +1029,6 @@
       opportunity_pipeline.sum_of_total_sale_amount_closed_lost: Opportunity Value
         Closed (Lost)
       opportunity_pipeline.sum_of_total_sale_amount_open: Opportunity Value (Open)
-    series_cell_visualizations:
-      opportunity_pipeline_new.count_of_opportunity_id:
-        is_active: true
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv:
-        is_active: false
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv_closed_won:
-        is_active: false
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv_closed_lost:
-        is_active: false
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv_open:
-        is_active: false
-      opportunity_pipeline_new.count_of_opportunity_id_closed_won:
-        is_active: true
-      opportunity_pipeline_new.count_of_opportunity_id_open:
-        is_active: true
-      opportunity_pipeline_new.count_of_opportunity_id_closed_lost:
-        is_active: true
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -1059,7 +1051,7 @@
   - name: Opportunity Created Date
     title: Opportunity Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: false
     required: false
     ui_config:

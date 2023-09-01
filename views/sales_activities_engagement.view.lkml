@@ -69,7 +69,7 @@ view: sales_activities_engagement {
       quarter,
       year
     ]
-    sql: ${TABLE}.ActivityCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.ActivityCreatedDatestamp, INTERVAL 212 DAY) ;;
   }
 
   dimension_group: end_date {

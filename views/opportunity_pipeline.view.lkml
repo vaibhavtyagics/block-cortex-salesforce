@@ -21,7 +21,7 @@ view: opportunity_pipeline {
       quarter,
       year
     ]
-    sql: ${TABLE}.AccountCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.AccountCreatedDatestamp, INTERVAL 224 DAY) ;;
   }
 
   # Here's what a typical dimension looks like in LookML.

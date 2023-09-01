@@ -36,7 +36,6 @@
     truncate_header: false
     series_labels:
       case_management.account_name: Account Name
-      case_management.user_full_name: Case Owner
       case_management.count_caseId: Count of Open Cases
     series_cell_visualizations:
       case_management.count_caseId:
@@ -47,7 +46,6 @@
           custom_colors:
           - "#a6d2ff"
           - "#1A73E8"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [case_management.account_id]
     y_axes: []
@@ -97,7 +95,6 @@
     truncate_header: false
     series_labels:
       case_management.account_name: Account Name
-      case_management.user_full_name: Case Owner
       case_management.count_caseId: Count of Closed Cases
     series_cell_visualizations:
       case_management.count_caseId:
@@ -108,7 +105,6 @@
           custom_colors:
           - "#a6d2ff"
           - "#1A73E8"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [case_management.account_id]
     y_axes: []
@@ -159,7 +155,6 @@
     truncate_header: false
     series_labels:
       case_management.account_name: Account Name
-      case_management.user_full_name: Case Owner
       case_management.count_caseId: Count of Escalated Cases
     series_cell_visualizations:
       case_management.count_caseId:
@@ -170,7 +165,6 @@
           custom_colors:
           - "#a6d2ff"
           - "#1A73E8"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [case_management.account_id]
     y_axes: []
@@ -199,12 +193,25 @@
       case_management.case_is_closed: 'No'
     sorts: [avg_case_age_days desc 0]
     limit: 5000
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${case_management.case_created_date},now())',
-        label: Case Age (Days), value_format: !!null '', value_format_name: !!null '',
-        dimension: case_age_days, _kind_hint: dimension, _type_hint: number}, {category: measure,
-        expression: !!null '', label: Avg. Case Age (Days), value_format: !!null '',
-        value_format_name: decimal_0, based_on: case_age_days, _kind_hint: measure,
-        measure: avg_case_age_days, type: average, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${case_management.case_created_date},now())
+      label: Case Age (Days)
+      value_format:
+      value_format_name:
+      dimension: case_age_days
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Avg. Case Age (Days)
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_age_days
+      _kind_hint: measure
+      measure: avg_case_age_days
+      type: average
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -224,8 +231,6 @@
     show_totals: true
     show_row_totals: true
     truncate_header: false
-    series_labels:
-      case_management.user_full_name: Case Owner
     series_cell_visualizations:
       avg_case_age_days:
         is_active: true
@@ -235,7 +240,6 @@
           custom_colors:
           - "#a6d2ff"
           - "#1A73E8"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [case_management.account_id]
     y_axes: []
@@ -297,12 +301,24 @@
     fields: [open_cases, case_management.count_caseId]
     sorts: [percent_of_open_cases]
     limit: 500
-    dynamic_fields: [{category: measure, label: Open Cases, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: open_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.case_is_closed: 'No,'}}, {category: table_calculation,
-        expression: "${open_cases}/${case_management.count_caseId}", label: Percent
-          of Open Cases, value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        table_calculation: percent_of_open_cases, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      label: Open Cases
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: No,
+    - category: table_calculation
+      expression: "${open_cases}/${case_management.count_caseId}"
+      label: Percent of Open Cases
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      table_calculation: percent_of_open_cases
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -321,7 +337,6 @@
         font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
           palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
         strikethrough: false, fields: !!null ''}]
-    series_types: {}
     defaults_version: 1
     hidden_fields: [percent_of_open_cases]
     y_axes: []
@@ -349,12 +364,24 @@
     sorts: [percent_of_closed_cases]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, label: Closed Cases, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: closed_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.case_is_closed: 'Yes,'}}, {category: table_calculation,
-        expression: "${closed_cases}/${case_management.count_caseId}", label: Percent
-          of Closed Cases, value_format: !!null '', value_format_name: percent_0,
-        _kind_hint: measure, table_calculation: percent_of_closed_cases, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      label: Closed Cases
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: Yes,
+    - category: table_calculation
+      expression: "${closed_cases}/${case_management.count_caseId}"
+      label: Percent of Closed Cases
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      table_calculation: percent_of_closed_cases
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -373,7 +400,6 @@
         font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
           palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
         strikethrough: false, fields: !!null ''}]
-    series_types: {}
     defaults_version: 1
     hidden_fields: [percent_of_open_cases]
     y_axes: []
@@ -428,7 +454,6 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -449,13 +474,29 @@
     sorts: [count_of_high_priority_cases desc 0]
     limit: 5000
     column_limit: 50
-    dynamic_fields: [{measure: count_of_case_id, based_on: case_management.case_id,
-        expression: '', label: Count of Case ID, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}, {measure: count_of_case_number, based_on: case_management.case_number,
-        expression: '', label: Count of Case Number, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}, {category: measure, expression: '', label: Count of High
-          Priority Cases, based_on: case_management.case_id, _kind_hint: measure,
-        measure: count_of_high_priority_cases, type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - measure: count_of_case_id
+      based_on: case_management.case_id
+      expression: ''
+      label: Count of Case ID
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    - measure: count_of_case_number
+      based_on: case_management.case_number
+      expression: ''
+      label: Count of Case Number
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Count of High Priority Cases
+      based_on: case_management.case_id
+      _kind_hint: measure
+      measure: count_of_high_priority_cases
+      type: count_distinct
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -475,17 +516,7 @@
     show_totals: true
     show_row_totals: true
     truncate_header: false
-    series_labels:
-      count_of_case_id_2: Count of High Priority Cases
     series_cell_visualizations:
-      count_of_case_id_2:
-        is_active: true
-        palette:
-          palette_id: 3493fa88-aa8a-f201-23a8-4f7bd18e9cb1
-          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
-          custom_colors:
-          - "#1a73e8"
-          - "#E52592"
       count_of_high_priority_cases:
         is_active: true
         palette:
@@ -520,7 +551,6 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
     value_labels: legend
     label_type: labPer
     hidden_fields: [case_management.account_id]
@@ -552,9 +582,17 @@
     sorts: [count_of_unassigned_open_cases desc]
     limit: 5000
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: '', label: Count of Unassigned
-          Open Cases, based_on: case_management.case_id, _kind_hint: measure, measure: count_of_unassigned_open_cases,
-        type: count_distinct, _type_hint: number, filters: {case_management.agent_is_assigned: 'No'}}]
+    dynamic_fields:
+    - category: measure
+      expression: ''
+      label: Count of Unassigned Open Cases
+      based_on: case_management.case_id
+      _kind_hint: measure
+      measure: count_of_unassigned_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.agent_is_assigned: 'No'
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -576,21 +614,8 @@
     truncate_header: false
     series_labels:
       case_management.account_name: Account Name
-      case_management.case_number: Case Number
-      case_management.case_created_date: Case Created Date
-      case_management.case_origin: Case Origin
-      case_management.case_status: Status
-      case_management.user_full_name: Case Owner
       count_of_unassigned_open_cases: Count of Unassigned Cases
     series_cell_visualizations:
-      count_of_unassigned_high_priority_cases:
-        is_active: true
-        palette:
-          palette_id: 343b1650-b3b0-82d6-8012-c40f0ff21478
-          collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
-          custom_colors:
-          - "#1a73e8"
-          - "#E52592"
       count_of_unassigned_open_cases:
         is_active: true
         palette:
@@ -599,7 +624,6 @@
           custom_colors:
           - "#a6d2ff"
           - "#1A73E8"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [case_management.account_id]
     y_axes: []
@@ -622,7 +646,7 @@
   - name: Case Created Date
     title: Case Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

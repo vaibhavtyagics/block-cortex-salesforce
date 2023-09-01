@@ -17,10 +17,16 @@
       sales_activities_engagement.is_converted: ''
       sales_activities_engagement.lead_status: ''
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -68,16 +74,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: [sales_activities_engagement.count_activity, sales_activities_engagement.count_lead_id]
     ordering: none
@@ -116,7 +116,6 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -169,9 +168,15 @@
     sorts: [sales_activities_engagement_opportunity_pipeline.opportunity_closed_month
         desc]
     limit: 500
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_closed_date},now())',
-        label: Overdue (days), value_format: !!null '', value_format_name: !!null '',
-        dimension: overdue_days, _kind_hint: dimension, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_closed_date},now())
+      label: Overdue (days)
+      value_format:
+      value_format_name:
+      dimension: overdue_days
+      _kind_hint: dimension
+      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -205,7 +210,6 @@
         tickDensity: default, tickDensityCustom: 5, type: linear}]
     x_axis_label: Target Close Month
     font_size: '10'
-    series_types: {}
     series_colors:
       sales_activities_engagement_opportunity_pipeline.count_of_opportunity_id: "#9334E6"
     series_labels:
@@ -244,9 +248,15 @@
         desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: dimension, expression: 'if(is_null(${sales_activities_engagement_opportunity_pipeline.last_activity_date_date}),diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_created_date},now()),diff_days(${sales_activities_engagement_opportunity_pipeline.last_activity_date_date},now()))',
-        label: Days since Last Activity, value_format: !!null '', value_format_name: !!null '',
-        dimension: days_since_last_activity, _kind_hint: dimension, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: if(is_null(${sales_activities_engagement_opportunity_pipeline.last_activity_date_date}),diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_created_date},now()),diff_days(${sales_activities_engagement_opportunity_pipeline.last_activity_date_date},now()))
+      label: Days since Last Activity
+      value_format:
+      value_format_name:
+      dimension: days_since_last_activity
+      _kind_hint: dimension
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -276,14 +286,10 @@
       sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount: Opportunity
         Value
       sales_activities_engagement_opportunity_pipeline.account_name: Account
-      sales_activities_engagement_opportunity_pipeline.Total_Opportunity_Value: Opportunity
-        Value
       sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount_conv: Opportunity
         Value
     series_cell_visualizations:
       sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount:
-        is_active: true
-      sales_activities_engagement_opportunity_pipeline.Total_Opportunity_Value:
         is_active: true
       sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount_conv:
         is_active: true
@@ -295,7 +301,6 @@
           custom_colors:
           - "#1a73e8"
           - "#E52592"
-    series_types: {}
     defaults_version: 1
     hidden_fields: [sales_activities_engagement_opportunity_pipeline.opportunity_id]
     y_axes: []
@@ -324,10 +329,19 @@
     sorts: [no_of_activities desc 0]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: !!null '', label: No. of Activities,
-        value_format: !!null '', value_format_name: '', based_on: sales_activities_engagement.count_activity,
-        _kind_hint: measure, measure: no_of_activities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.status: Completed}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: No. of Activities
+      value_format:
+      value_format_name: ''
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: no_of_activities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.status: Completed
     filter_expression: NOT(is_null(${sales_activities_engagement.lead_id})) OR NOT(is_null(${sales_activities_engagement.opportunity_id}))
     value_labels: legend
     label_type: labPer
@@ -337,9 +351,6 @@
       options:
         steps: 5
     series_colors: {}
-    series_labels:
-      opportunity_value: Revenue
-      sales_activities_engagement.count_activity: No. of Activities
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -377,7 +388,6 @@
       first_last: first
       num_rows: '10'
     label_value_format: ''
-    series_types: {}
     defaults_version: 1
     hidden_fields: [sales_activities_engagement.sales_rep_owner_id]
     show_null_points: true
@@ -419,19 +429,40 @@
       sales_activities_engagement.is_closed: 'No'
       sales_activities_engagement.is_won: 'No'
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Activities
-          - Open Opportunities, value_format: !!null '', value_format_name: !!null '',
-        based_on: sales_activities_engagement.count_activity, _kind_hint: measure,
-        measure: activities_open_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'No'}}, {category: measure,
-        expression: !!null '', label: Open Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_id,
-        _kind_hint: measure, measure: open_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'No'}}, {category: table_calculation,
-        expression: "${activities_open_opportunities}/${open_opportunities}", label: Avg.
-          Activities per Open Opportunity, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_activities_per_open_opportunity,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Activities - Open Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: activities_open_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'No'
+    - category: measure
+      expression:
+      label: Open Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_id
+      _kind_hint: measure
+      measure: open_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'No'
+    - category: table_calculation
+      expression: "${activities_open_opportunities}/${open_opportunities}"
+      label: Avg. Activities per Open Opportunity
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_open_opportunity
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -479,16 +510,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: []
     ordering: none
@@ -524,32 +549,82 @@
       sales_activities_engagement.opportunity_id: "-NULL"
     sorts: [sales_activities_engagement.opportunity_created_month desc]
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_opportunity_owner}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}, {category: table_calculation, expression: "${activities_open_opportunities}/${open_opportunities}",
-        label: Avg. Activities per Open Opportunity, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_activities_per_open_opportunity,
-        _type_hint: number, is_disabled: true}, {category: table_calculation, expression: "${activities_closed_opportunities}/${closed_opportunities}",
-        label: Avg. Activities per Closed Opportunity, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_activities_per_closed_opportunity,
-        _type_hint: number, is_disabled: true}, {category: measure, expression: !!null '',
-        label: Activities - Open Opportunities, value_format: !!null '', value_format_name: !!null '',
-        based_on: sales_activities_engagement.count_activity, _kind_hint: measure,
-        measure: activities_open_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'No'}}, {category: measure,
-        expression: !!null '', label: Activities - Closed Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_activity,
-        _kind_hint: measure, measure: activities_closed_opportunities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.is_closed_flag: 'Yes'}},
-      {category: measure, expression: !!null '', label: Closed Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_id,
-        _kind_hint: measure, measure: closed_opportunities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.is_closed_flag: 'Yes'}},
-      {category: measure, expression: !!null '', label: Open Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_id,
-        _kind_hint: measure, measure: open_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'No'}}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_opportunity_owner}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
+    - category: table_calculation
+      expression: "${activities_open_opportunities}/${open_opportunities}"
+      label: Avg. Activities per Open Opportunity
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_open_opportunity
+      _type_hint: number
+      is_disabled: true
+    - category: table_calculation
+      expression: "${activities_closed_opportunities}/${closed_opportunities}"
+      label: Avg. Activities per Closed Opportunity
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_closed_opportunity
+      _type_hint: number
+      is_disabled: true
+    - category: measure
+      expression:
+      label: Activities - Open Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: activities_open_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'No'
+    - category: measure
+      expression:
+      label: Activities - Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: activities_closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: measure
+      expression:
+      label: Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_id
+      _kind_hint: measure
+      measure: closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: measure
+      expression:
+      label: Open Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_id
+      _kind_hint: measure
+      measure: open_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'No'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -588,7 +663,6 @@
         unpinAxis: false, tickDensity: default, type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
@@ -599,20 +673,15 @@
       sales_activities_engagement.activity_per_closed_won_opportunity: "#45b2e8"
       sales_activities_engagement.activity_per_closed_lost_opportunity: "#79cce8"
     series_labels:
-      avg_activities_per_sales_representative: Avg. Activities per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
       sales_activities_engagement.activity_per_opportunity_owner: Avg. Activities
         per Sales Rep
       sales_activities_engagement.activity_per_open_opportunity: Avg. Activities per
         Open Opportunity
-      sales_activities_engagement.activity_per_closed_opportunity: Avg. Activities
-        per Closed Opportunity
       sales_activities_engagement.activity_per_closed_won_opportunity: Avg. Activities
         per Closed Won Opportunity
       sales_activities_engagement.activity_per_closed_lost_opportunity: Avg. Activities
         per Closed Lost Opportunity
     series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
       sales_activities_engagement.activity_per_opportunity_owner: triangle-down
     x_axis_datetime_label: "%b %y"
     custom_color_enabled: true
@@ -657,10 +726,16 @@
       sales_activities_engagement.is_closed: ''
       sales_activities_engagement.is_won: ''
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_opportunity_owner}",
-        label: Avg. Activities Per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_opportunity_owner}"
+      label: Avg. Activities Per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -708,16 +783,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: []
     ordering: none
@@ -763,9 +832,17 @@
     sorts: [sales_activities_engagement_opportunity_pipeline.overdue_days_range]
     limit: 500
     total: true
-    dynamic_fields: [{category: measure, expression: !!null '', label: No. of Opportunities,
-        value_format: !!null '', value_format_name: !!null '', based_on: sales_activities_engagement_opportunity_pipeline.count_of_opportunity_id,
-        _kind_hint: measure, measure: no_of_opportunities, type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: No. of Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement_opportunity_pipeline.count_of_opportunity_id
+      _kind_hint: measure
+      measure: no_of_opportunities
+      type: count_distinct
+      _type_hint: number
     value_labels: legend
     label_type: labPer
     series_colors:
@@ -776,14 +853,6 @@
       200 to 499: "#E52592"
       500 to 999: "#9334E6"
       1000 or Above: "#EA4335"
-    series_labels:
-      1 to 24: 1 to 24 days
-      25 to 49: 25 to 49 days
-      50 to 99: 50 to 99 days
-      100 to 199: 100 to 199 days
-      200 to 499: 200 to 499 days
-      500 to 999: 500 to 999 days
-      1000 or Above: 1000 days or Above
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -812,7 +881,6 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     note_state: collapsed
@@ -840,19 +908,40 @@
       sales_activities_engagement.is_closed: 'Yes'
       sales_activities_engagement.is_won: 'No'
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Activities
-          - Closed Opportunities, value_format: !!null '', value_format_name: !!null '',
-        based_on: sales_activities_engagement.count_activity, _kind_hint: measure,
-        measure: activities_closed_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'Yes'}}, {category: measure,
-        expression: !!null '', label: Closed Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_id,
-        _kind_hint: measure, measure: closed_opportunities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.is_closed_flag: 'Yes'}},
-      {category: table_calculation, expression: "${activities_closed_opportunities}/${closed_opportunities}",
-        label: Avg. Activities per Closed Opportunity, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_activities_per_closed_opportunity,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Activities - Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: activities_closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: measure
+      expression:
+      label: Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_id
+      _kind_hint: measure
+      measure: closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: table_calculation
+      expression: "${activities_closed_opportunities}/${closed_opportunities}"
+      label: Avg. Activities per Closed Opportunity
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_closed_opportunity
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -900,16 +989,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: [activities_open_opportunities, open_opportunities]
     ordering: none
@@ -942,19 +1025,40 @@
       sales_activities_engagement.is_closed: 'Yes'
       sales_activities_engagement.is_won: 'Yes'
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Activities
-          - Closed Opportunities, value_format: !!null '', value_format_name: !!null '',
-        based_on: sales_activities_engagement.count_activity, _kind_hint: measure,
-        measure: activities_closed_opportunities, type: count_distinct, _type_hint: number,
-        filters: {sales_activities_engagement.is_closed_flag: 'Yes'}}, {category: measure,
-        expression: !!null '', label: Closed Opportunities, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_id,
-        _kind_hint: measure, measure: closed_opportunities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.is_closed_flag: 'Yes'}},
-      {category: table_calculation, expression: "${activities_closed_opportunities}/${closed_opportunities}",
-        label: Avg. Activities per Closed Opportunity, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_activities_per_closed_opportunity,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Activities - Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_activity
+      _kind_hint: measure
+      measure: activities_closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: measure
+      expression:
+      label: Closed Opportunities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_id
+      _kind_hint: measure
+      measure: closed_opportunities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.is_closed_flag: 'Yes'
+    - category: table_calculation
+      expression: "${activities_closed_opportunities}/${closed_opportunities}"
+      label: Avg. Activities per Closed Opportunity
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_closed_opportunity
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -1002,16 +1106,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: [activities_open_opportunities, open_opportunities]
     ordering: none
@@ -1044,10 +1142,16 @@
       sales_activities_engagement.lead_status: ''
       sales_activities_engagement.is_converted: ''
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -1095,16 +1199,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: []
     ordering: none
@@ -1137,10 +1235,16 @@
       sales_activities_engagement.is_converted: 'Yes'
       sales_activities_engagement.lead_status: ''
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -1188,16 +1292,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: []
     ordering: none
@@ -1230,10 +1328,16 @@
       sales_activities_engagement.lead_status: Unqualified
       sales_activities_engagement.is_converted: 'No'
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -1281,16 +1385,10 @@
         type: linear}]
     x_axis_label: Month
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       avg_activities_per_sales_representative: "#5b5e55"
       avg_activities_per_open_opportunity: "#16dbd9"
       avg_activities_per_closed_opportunity: "#4cc6fa"
-    series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
-    series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
     x_axis_datetime_label: "%b %y"
     hidden_fields: []
     ordering: none
@@ -1327,10 +1425,16 @@
       sales_activities_engagement.opportunity_id: 'NULL'
     sorts: [sales_activities_engagement.lead_created_date_month desc]
     limit: 500
-    dynamic_fields: [{category: table_calculation, expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}",
-        label: Avg. Activities per Sales Representative, value_format: !!null '',
-        value_format_name: decimal_0, _kind_hint: measure, table_calculation: avg_activities_per_sales_representative,
-        _type_hint: number, is_disabled: true}]
+    dynamic_fields:
+    - category: table_calculation
+      expression: "${sales_activities_engagement.count_activity}/${sales_activities_engagement.count_lead_id}"
+      label: Avg. Activities per Sales Representative
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_activities_per_sales_representative
+      _type_hint: number
+      is_disabled: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1376,15 +1480,12 @@
     x_axis_zoom: true
     y_axis_zoom: true
     label_value_format: "#,##0"
-    series_types: {}
     series_colors:
       sales_activities_engagement.activity_per_lead_owner: "#5b5e55"
       sales_activities_engagement.activity_per_lead: "#1A73E8"
       sales_activities_engagement.activities_per_converted_leads: "#45b2e8"
       sales_activities_engagement.activities_per_unqualified_leads: "#79cce8"
     series_labels:
-      avg_activities_per_sales_representative: Avg. Activities Per Sales Representative
-      avg_activities_per_open_opportunity: Avg. Activities per Open Opportunity
       sales_activities_engagement.activity_per_lead_owner: Avg. Follow-ups per Sales
         Rep
       sales_activities_engagement.activity_per_lead: Follow-Up Contact Rate per Lead
@@ -1393,7 +1494,6 @@
       sales_activities_engagement.activities_per_unqualified_leads: Follow-up Contact
         Rate per Unqualified Lead
     series_point_styles:
-      avg_activities_per_sales_representative: triangle-down
       sales_activities_engagement.activity_per_lead_owner: triangle
     x_axis_datetime_label: "%b %y"
     custom_color_enabled: true
@@ -1434,19 +1534,35 @@
     type: looker_bar
     fields: [sales_activities_engagement_opportunity_pipeline.user_full_name, won_opportunities_value,
       completed_activities]
-    filters: {}
     sorts: [won_opportunities_value]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: !!null '', label: Completed Activities,
-        value_format: !!null '', value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_activity,
-        _kind_hint: measure, measure: completed_activities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.status: Completed}},
-      {category: measure, expression: !!null '', label: Won Opportunities Value, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount,
-        _kind_hint: measure, measure: won_opportunities_value, type: sum_distinct,
-        _type_hint: number, filters: {sales_activities_engagement_opportunity_pipeline.opportunity_is_closed: 'Yes',
-          sales_activities_engagement_opportunity_pipeline.opportunity_is_won: 'Yes'}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Completed Activities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_activity
+      _kind_hint: measure
+      measure: completed_activities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.status: Completed
+    - category: measure
+      expression:
+      label: Won Opportunities Value
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount
+      _kind_hint: measure
+      measure: won_opportunities_value
+      type: sum_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement_opportunity_pipeline.opportunity_is_closed: 'Yes'
+        sales_activities_engagement_opportunity_pipeline.opportunity_is_won: 'Yes'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1514,19 +1630,35 @@
     type: looker_bar
     fields: [sales_activities_engagement_opportunity_pipeline.user_full_name, won_opportunities_value,
       completed_activities]
-    filters: {}
     sorts: [won_opportunities_value desc 0]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, expression: !!null '', label: Completed Activities,
-        value_format: !!null '', value_format_name: !!null '', based_on: sales_activities_engagement.count_opportunity_activity,
-        _kind_hint: measure, measure: completed_activities, type: count_distinct,
-        _type_hint: number, filters: {sales_activities_engagement.status: Completed}},
-      {category: measure, expression: !!null '', label: Won Opportunities Value, value_format: !!null '',
-        value_format_name: !!null '', based_on: sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount,
-        _kind_hint: measure, measure: won_opportunities_value, type: sum_distinct,
-        _type_hint: number, filters: {sales_activities_engagement_opportunity_pipeline.opportunity_is_closed: 'Yes',
-          sales_activities_engagement_opportunity_pipeline.opportunity_is_won: 'Yes'}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Completed Activities
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement.count_opportunity_activity
+      _kind_hint: measure
+      measure: completed_activities
+      type: count_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement.status: Completed
+    - category: measure
+      expression:
+      label: Won Opportunities Value
+      value_format:
+      value_format_name:
+      based_on: sales_activities_engagement_opportunity_pipeline.sum_of_total_sale_amount
+      _kind_hint: measure
+      measure: won_opportunities_value
+      type: sum_distinct
+      _type_hint: number
+      filters:
+        sales_activities_engagement_opportunity_pipeline.opportunity_is_closed: 'Yes'
+        sales_activities_engagement_opportunity_pipeline.opportunity_is_won: 'Yes'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1592,7 +1724,7 @@
   - name: Created Date
     title: Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

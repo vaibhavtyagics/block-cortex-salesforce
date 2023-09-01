@@ -44,7 +44,6 @@
     series_labels:
       sales_activities_engagement.count_opportunity_id: Total Opportunities
       sales_activities_engagement.count_opportunity_owner: Total Opportunity Owners
-      sales_activities_engagement.count_activity: No. of Activities
       sales_activities_engagement.count_opportunity_activity: No. of Activities
       sales_activities_engagement.stage_name: Opportunity Stage
     series_cell_visualizations:
@@ -52,7 +51,6 @@
         is_active: true
     hidden_fields: [sales_activities_engagement.opportunity_id]
     defaults_version: 1
-    series_types: {}
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -76,7 +74,7 @@
   - name: Opportunity Created Date
     title: Opportunity Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

@@ -23,9 +23,15 @@
         desc, sales_activities_engagement_opportunity_pipeline.opportunity_name desc,
       sales_activities_engagement_opportunity_pipeline.opportunity_stage desc]
     limit: 500
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_closed_date},now())',
-        label: Overdue (days), value_format: !!null '', value_format_name: !!null '',
-        dimension: overdue_days, _kind_hint: dimension, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${sales_activities_engagement_opportunity_pipeline.opportunity_closed_date},now())
+      label: Overdue (days)
+      value_format:
+      value_format_name:
+      dimension: overdue_days
+      _kind_hint: dimension
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -60,7 +66,6 @@
       sales_activities_engagement_opportunity_pipeline.count_of_opportunity_id:
         is_active: false
     hidden_fields: [sales_activities_engagement_opportunity_pipeline.count_of_opportunity_id]
-    series_types: {}
     defaults_version: 1
     y_axes: []
     listen:
@@ -78,7 +83,7 @@
   - name: Opportunity Created Date
     title: Opportunity Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

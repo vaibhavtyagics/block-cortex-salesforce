@@ -20,7 +20,7 @@ view: sales_activities_engagement_opportunity_pipeline {
       quarter,
       year
     ]
-    sql: ${TABLE}.AccountCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.AccountCreatedDatestamp, INTERVAL 224 DAY) ;;
   }
 
   # Here's what a typical dimension looks like in LookML.
@@ -99,7 +99,7 @@ view: sales_activities_engagement_opportunity_pipeline {
       quarter,
       year
     ]
-    sql: ${TABLE}.OpportunityCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.OpportunityCreatedDatestamp, INTERVAL 220 DAY) ;;
   }
 
   # dimension: opportunity_description {

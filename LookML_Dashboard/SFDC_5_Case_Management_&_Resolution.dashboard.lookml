@@ -16,13 +16,29 @@
       case_management.case_is_closed: 'Yes'
     sorts: [avg_case_resolution_time_days]
     limit: 2000
-    dynamic_fields: [{category: measure, expression: !!null '', label: Avg. Case Resolution
-          Time (Days), value_format: !!null '', value_format_name: decimal_0, based_on: case_management.case_resolution_time,
-        _kind_hint: measure, measure: avg_case_resolution_time_days, type: average,
-        _type_hint: number}, {category: measure, expression: !!null '', label: Count
-          of High Priority Cases, value_format: !!null '', value_format_name: !!null '',
-        based_on: case_management.count_caseId, _kind_hint: measure, measure: count_of_high_priority_cases,
-        type: count_distinct, _type_hint: number, filters: {case_management.priority: High}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Avg. Case Resolution Time (Days)
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_management.case_resolution_time
+      _kind_hint: measure
+      measure: avg_case_resolution_time_days
+      type: average
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Count of High Priority Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: count_of_high_priority_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -102,21 +118,55 @@
       case_management.case_is_closed: 'Yes'
     sorts: [count_of_closed_cases desc]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: High Priority
-          - Closed Cases, value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: high_priority_closed_cases, type: count_distinct,
-        _type_hint: number, filters: {case_management.priority: High}}, {category: measure,
-        expression: !!null '', label: Medium Priority - Closed Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: medium_priority_closed_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.priority: Medium}}, {category: measure, expression: !!null '',
-        label: Low Priority - Closed Cases, value_format: !!null '', value_format_name: !!null '',
-        based_on: case_management.count_caseId, _kind_hint: measure, measure: low_priority_closed_cases,
-        type: count_distinct, _type_hint: number, filters: {case_management.priority: Low}},
-      {category: measure, expression: !!null '', label: Count of Closed Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: count_of_closed_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.case_is_closed: 'Yes'}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: High Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: high_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: measure
+      expression:
+      label: Medium Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: medium_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Medium
+    - category: measure
+      expression:
+      label: Low Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: low_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Low
+    - category: measure
+      expression:
+      label: Count of Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: count_of_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: 'Yes'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -162,7 +212,6 @@
       show_hide: show
       first_last: first
       num_rows: '10'
-    series_types: {}
     series_colors:
       low_priority_closed_cases: "#abcbf9"
     series_labels:
@@ -198,17 +247,43 @@
       case_management.case_is_closed: 'Yes'
     sorts: [case_management.case_closed_month desc]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: High Priority
-          - Closed Cases, value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: high_priority_closed_cases, type: count_distinct,
-        _type_hint: number, filters: {case_management.priority: High}}, {category: measure,
-        expression: !!null '', label: Medium Priority - Closed Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: medium_priority_closed_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.priority: Medium}}, {category: measure, expression: !!null '',
-        label: Low Priority - Closed Cases, value_format: !!null '', value_format_name: !!null '',
-        based_on: case_management.count_caseId, _kind_hint: measure, measure: low_priority_closed_cases,
-        type: count_distinct, _type_hint: number, filters: {case_management.priority: Low}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: High Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: high_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: measure
+      expression:
+      label: Medium Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: medium_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Medium
+    - category: measure
+      expression:
+      label: Low Priority - Closed Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: low_priority_closed_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Low
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -244,7 +319,6 @@
         tickDensity: default, tickDensityCustom: 5, type: linear}]
     x_axis_label: Month
     font_size: '10'
-    series_types: {}
     series_colors:
       low_priority_closed_cases: "#F5EBC7"
       medium_priority_closed_cases: "#FADA64"
@@ -283,21 +357,55 @@
       case_management.agent_is_assigned: 'Yes'
     sorts: [count_of_open_cases desc]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: High Priority
-          - Open Cases, value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: high_priority_open_cases, type: count_distinct,
-        _type_hint: number, filters: {case_management.priority: High}}, {category: measure,
-        expression: !!null '', label: Medium Priority - Open Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: medium_priority_open_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.priority: Medium}}, {category: measure, expression: !!null '',
-        label: Low Priority - Open Cases, value_format: !!null '', value_format_name: !!null '',
-        based_on: case_management.count_caseId, _kind_hint: measure, measure: low_priority_open_cases,
-        type: count_distinct, _type_hint: number, filters: {case_management.priority: Low}},
-      {category: measure, expression: !!null '', label: Count of Open Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: count_of_open_cases, type: count_distinct, _type_hint: number, filters: {
-          case_management.case_is_closed: 'No'}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: High Priority - Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: high_priority_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: measure
+      expression:
+      label: Medium Priority - Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: medium_priority_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Medium
+    - category: measure
+      expression:
+      label: Low Priority - Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: low_priority_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Low
+    - category: measure
+      expression:
+      label: Count of Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: count_of_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: 'No'
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -343,7 +451,6 @@
       show_hide: show
       first_last: first
       num_rows: '10'
-    series_types: {}
     series_colors:
       low_priority_open_cases: "#abcbf9"
     series_labels:
@@ -380,13 +487,24 @@
       case_management.agent_is_assigned: 'Yes'
     sorts: [priority_sort_order, case_management.case_age desc, case_status_sort_order]
     limit: 5000
-    dynamic_fields: [{category: dimension, expression: 'case(when(${case_management.priority}="High","1"),when(${case_management.priority}="Medium","2"),when(${case_management.priority}="Low","3"),"Unknown")',
-        label: Priority Sort Order, value_format: !!null '', value_format_name: !!null '',
-        dimension: priority_sort_order, _kind_hint: dimension, _type_hint: string},
-      {category: dimension, expression: 'case(when(${case_management.case_status}="Escalated","1"),when(${case_management.case_status}="Assigned","2"),when(${case_management.case_status}="New","3"),when(${case_management.case_status}="Waiting
-          for customer","4"),"Unknown")', label: Case Status Sort Order, value_format: !!null '',
-        value_format_name: !!null '', dimension: case_status_sort_order, _kind_hint: dimension,
-        _type_hint: string}]
+    dynamic_fields:
+    - category: dimension
+      expression: case(when(${case_management.priority}="High","1"),when(${case_management.priority}="Medium","2"),when(${case_management.priority}="Low","3"),"Unknown")
+      label: Priority Sort Order
+      value_format:
+      value_format_name:
+      dimension: priority_sort_order
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      expression: case(when(${case_management.case_status}="Escalated","1"),when(${case_management.case_status}="Assigned","2"),when(${case_management.case_status}="New","3"),when(${case_management.case_status}="Waiting
+        for customer","4"),"Unknown")
+      label: Case Status Sort Order
+      value_format:
+      value_format_name:
+      dimension: case_status_sort_order
+      _kind_hint: dimension
+      _type_hint: string
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -407,14 +525,12 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      case_management.user_full_name: Agent Name
       case_management.case_number: Case Number
       case_management.case_created_date: Case Created Date
       case_management.case_age: Case Age (days)
       case_management.case_status: Case Status
       case_management.priority: Priority
       case_management.case_owner_name: Agent Name
-    series_types: {}
     defaults_version: 1
     hidden_fields: [priority_sort_order, case_status_sort_order]
     y_axes: []
@@ -441,12 +557,25 @@
     fields: [avg_case_resolution_time]
     filters:
       case_resolution_time: NOT NULL
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${case_management.case_created_date},${case_management.case_closed_date})',
-        label: Case Resolution Time, value_format: !!null '', value_format_name: !!null '',
-        dimension: case_resolution_time, _kind_hint: dimension, _type_hint: number},
-      {category: measure, expression: !!null '', label: Avg. Case Resolution Time,
-        value_format: !!null '', value_format_name: decimal_0, based_on: case_management.case_resolution_time,
-        _kind_hint: measure, measure: avg_case_resolution_time, type: average, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${case_management.case_created_date},${case_management.case_closed_date})
+      label: Case Resolution Time
+      value_format:
+      value_format_name:
+      dimension: case_resolution_time
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Avg. Case Resolution Time
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_management.case_resolution_time
+      _kind_hint: measure
+      measure: avg_case_resolution_time
+      type: average
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -471,7 +600,6 @@
     header_font_size: 12
     rows_font_size: 12
     defaults_version: 1
-    series_types: {}
     y_axes: []
     note_state: collapsed
     note_display: hover
@@ -497,12 +625,25 @@
     filters:
       case_resolution_time: NOT NULL
       case_management.priority: High
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${case_management.case_created_date},${case_management.case_closed_date})',
-        label: Case Resolution Time, value_format: !!null '', value_format_name: !!null '',
-        dimension: case_resolution_time, _kind_hint: dimension, _type_hint: number},
-      {category: measure, expression: !!null '', label: Avg. Case Resolution Time,
-        value_format: !!null '', value_format_name: decimal_0, based_on: case_management.case_resolution_time,
-        _kind_hint: measure, measure: avg_case_resolution_time, type: average, _type_hint: number}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${case_management.case_created_date},${case_management.case_closed_date})
+      label: Case Resolution Time
+      value_format:
+      value_format_name:
+      dimension: case_resolution_time
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Avg. Case Resolution Time
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_management.case_resolution_time
+      _kind_hint: measure
+      measure: avg_case_resolution_time
+      type: average
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -527,7 +668,6 @@
     header_font_size: 12
     rows_font_size: 12
     defaults_version: 1
-    series_types: {}
     y_axes: []
     note_state: expanded
     note_display: hover
@@ -573,7 +713,6 @@
     header_font_size: 12
     rows_font_size: 12
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     listen: {}
@@ -607,17 +746,39 @@
     fields: [case_management.count_caseId, case_management.count_Owner, count_cases_not_in_group,
       no_of_agents]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Count Cases
-          not in group, value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: count_cases_not_in_group, type: count_distinct,
-        _type_hint: number, filters: {case_management.agent_is_assigned: 'Yes'}},
-      {category: measure, expression: !!null '', label: 'No. of Agents ', value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.case_owner, _kind_hint: measure,
-        measure: no_of_agents, type: count_distinct, _type_hint: number, filters: {
-          case_management.agent_is_assigned: 'Yes'}}, {category: table_calculation,
-        expression: "${count_cases_not_in_group}/${no_of_agents}", label: Avg. No.
-          of Cases per Agent, value_format: !!null '', value_format_name: decimal_0,
-        _kind_hint: measure, table_calculation: avg_no_of_cases_per_agent, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Count Cases not in group
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: count_cases_not_in_group
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.agent_is_assigned: 'Yes'
+    - category: measure
+      expression:
+      label: 'No. of Agents '
+      value_format:
+      value_format_name:
+      based_on: case_management.case_owner
+      _kind_hint: measure
+      measure: no_of_agents
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.agent_is_assigned: 'Yes'
+    - category: table_calculation
+      expression: "${count_cases_not_in_group}/${no_of_agents}"
+      label: Avg. No. of Cases per Agent
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      table_calculation: avg_no_of_cases_per_agent
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: false
@@ -670,24 +831,61 @@
     sorts: [case_management.case_closed_month desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${case_management.case_created_date},${case_management.case_closed_date})',
-        label: Case Duration (Days), value_format: !!null '', value_format_name: !!null '',
-        dimension: case_duration_days, _kind_hint: dimension, _type_hint: number},
-      {category: measure, expression: !!null '', label: Avg. Case Duration (All Cases),
-        value_format: !!null '', value_format_name: decimal_0, based_on: case_duration_days,
-        _kind_hint: measure, measure: avg_case_duration_all_cases, type: average,
-        _type_hint: number}, {category: measure, expression: !!null '', label: Avg.
-          Case Duration - High Priority, value_format: !!null '', value_format_name: decimal_0,
-        based_on: case_duration_days, _kind_hint: measure, measure: avg_case_duration_high_priority,
-        type: average, _type_hint: number, filters: {case_management.priority: High}},
-      {category: measure, expression: !!null '', label: Avg. Case Duration - Medium
-          Priority, value_format: !!null '', value_format_name: decimal_0, based_on: case_duration_days,
-        _kind_hint: measure, measure: avg_case_duration_medium_priority, type: average,
-        _type_hint: number, filters: {case_management.priority: Medium}}, {category: measure,
-        expression: !!null '', label: Avg. Case Duration - Low Priority, value_format: !!null '',
-        value_format_name: decimal_0, based_on: case_duration_days, _kind_hint: measure,
-        measure: avg_case_duration_low_priority, type: average, _type_hint: number,
-        filters: {case_management.priority: Low}}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${case_management.case_created_date},${case_management.case_closed_date})
+      label: Case Duration (Days)
+      value_format:
+      value_format_name:
+      dimension: case_duration_days
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Avg. Case Duration (All Cases)
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_duration_days
+      _kind_hint: measure
+      measure: avg_case_duration_all_cases
+      type: average
+      _type_hint: number
+    - category: measure
+      expression:
+      label: Avg. Case Duration - High Priority
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_duration_days
+      _kind_hint: measure
+      measure: avg_case_duration_high_priority
+      type: average
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: measure
+      expression:
+      label: Avg. Case Duration - Medium Priority
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_duration_days
+      _kind_hint: measure
+      measure: avg_case_duration_medium_priority
+      type: average
+      _type_hint: number
+      filters:
+        case_management.priority: Medium
+    - category: measure
+      expression:
+      label: Avg. Case Duration - Low Priority
+      value_format:
+      value_format_name: decimal_0
+      based_on: case_duration_days
+      _kind_hint: measure
+      measure: avg_case_duration_low_priority
+      type: average
+      _type_hint: number
+      filters:
+        case_management.priority: Low
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -732,10 +930,6 @@
       avg_case_duration_high_priority: line
     series_colors:
       avg_case_duration_days: "#1A73E8"
-    series_labels:
-      1 - New - avg_case_status_duration_days: New
-      2 - Assigned - avg_case_status_duration_days: Assigned
-      3 - Escalated - avg_case_status_duration_days: Escalated
     series_point_styles:
       avg_case_duration_high_priority: diamond
       avg_case_duration_low_priority: triangle-down
@@ -771,9 +965,16 @@
     sorts: [open_cases desc 0]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{category: measure, label: Open Cases, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: open_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.case_is_closed: 'No'}}]
+    dynamic_fields:
+    - category: measure
+      label: Open Cases
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: 'No'
     value_labels: legend
     label_type: labPer
     x_axis_gridlines: false
@@ -801,7 +1002,6 @@
     show_null_points: true
     interpolation: linear
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     note_state: collapsed
@@ -823,7 +1023,7 @@
   - name: Case Created Date
     title: Case Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

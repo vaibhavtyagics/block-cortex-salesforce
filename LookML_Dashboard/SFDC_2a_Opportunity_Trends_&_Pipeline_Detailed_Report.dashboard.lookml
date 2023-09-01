@@ -18,13 +18,29 @@
     sorts: [opportunity_pipeline.sum_of_total_sale_amount desc]
     limit: 5000
     column_limit: 50
-    dynamic_fields: [{measure: count_of_opportunity_id, based_on: opportunity_pipeline.opportunity_id,
-        expression: '', label: Count of Opportunity ID, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}, {measure: count_of_account_id, based_on: opportunity_pipeline.account_id,
-        expression: '', label: Count of Account ID, type: count_distinct, _kind_hint: measure,
-        _type_hint: number}, {category: measure, expression: '', label: 'Total # of
-          Opportunities (Open)', based_on: opportunity_pipeline.opportunity_id, _kind_hint: measure,
-        measure: total_of_opportunities_open, type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - measure: count_of_opportunity_id
+      based_on: opportunity_pipeline.opportunity_id
+      expression: ''
+      label: Count of Opportunity ID
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    - measure: count_of_account_id
+      based_on: opportunity_pipeline.account_id
+      expression: ''
+      label: Count of Account ID
+      type: count_distinct
+      _kind_hint: measure
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: 'Total # of Opportunities (Open)'
+      based_on: opportunity_pipeline.opportunity_id
+      _kind_hint: measure
+      measure: total_of_opportunities_open
+      type: count_distinct
+      _type_hint: number
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -45,16 +61,9 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      opportunity_pipeline.user_full_name: Opportunity Owner
       opportunity_pipeline.sum_of_total_sale_amount_conv: Opportunity Value
-      opportunity_pipeline_new.sum_of_total_sale_amount: Opportunity Value
       opportunity_pipeline.opportunity_owner_name: Opportunity Owner
       opportunity_pipeline.sum_of_total_sale_amount: Opportunity Value
-    series_cell_visualizations:
-      opportunity_pipeline_new.sum_of_total_sale_amount:
-        is_active: true
-      opportunity_pipeline_new.sum_of_total_sale_amount_conv:
-        is_active: true
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -81,7 +90,6 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
     hidden_fields: [opportunity_pipeline.opportunity_id]
     y_axes: []
     hidden_pivots: {}
@@ -101,7 +109,7 @@
   - name: Opportunity Created Date
     title: Opportunity Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:
@@ -120,7 +128,7 @@
     required: true
     ui_config:
       type: dropdown_menu
-      display: popover
+      display: inline
     model: cortex_salesforce
     explore: opportunity_pipeline
     listens_to_filters: []

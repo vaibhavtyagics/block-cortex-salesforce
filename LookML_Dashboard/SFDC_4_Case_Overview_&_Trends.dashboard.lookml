@@ -48,12 +48,24 @@
     fields: [open_cases, case_management.count_caseId]
     sorts: [percent_of_open_cases]
     limit: 500
-    dynamic_fields: [{category: measure, label: Open Cases, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: open_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.case_is_closed: 'No,'}}, {category: table_calculation,
-        expression: "${open_cases}/${case_management.count_caseId}", label: Percent
-          of Open Cases, value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        table_calculation: percent_of_open_cases, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      label: Open Cases
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: No,
+    - category: table_calculation
+      expression: "${open_cases}/${case_management.count_caseId}"
+      label: Percent of Open Cases
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      table_calculation: percent_of_open_cases
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -72,7 +84,6 @@
         font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
           palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
         strikethrough: false, fields: !!null ''}]
-    series_types: {}
     defaults_version: 1
     hidden_fields: [percent_of_open_cases]
     y_axes: []
@@ -100,13 +111,24 @@
     filters:
       case_management.case_is_closed: 'No'
     limit: 500
-    dynamic_fields: [{category: measure, label: High Priority Open Cases, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: high_priority_open_cases, type: count_distinct,
-        _type_hint: number, filters: {case_management.priority: High}}, {category: table_calculation,
-        expression: "${high_priority_open_cases}/${case_management.count_caseId}",
-        label: High Priority Open Cases Percent, value_format: !!null '', value_format_name: percent_0,
-        _kind_hint: measure, table_calculation: high_priority_open_cases_percent,
-        _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      label: High Priority Open Cases
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: high_priority_open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: table_calculation
+      expression: "${high_priority_open_cases}/${case_management.count_caseId}"
+      label: High Priority Open Cases Percent
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      table_calculation: high_priority_open_cases_percent
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -117,7 +139,6 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     comparison_label: of all Open Cases
-    series_types: {}
     defaults_version: 1
     hidden_fields: [high_priority_open_cases_percent]
     y_axes: []
@@ -147,14 +168,34 @@
       case_management.case_is_closed: 'No'
     sorts: [case_management.case_created_month desc]
     limit: 500
-    dynamic_fields: [{category: measure, label: High Priority, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: high_priority, type: count_distinct, _type_hint: number,
-        filters: {case_management.priority: High}}, {category: measure, label: Medium
-          Priority, based_on: case_management.count_caseId, _kind_hint: measure, measure: medium_priority,
-        type: count_distinct, _type_hint: number, filters: {case_management.priority: Medium}},
-      {category: measure, label: Low Priority, based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: low_priority, type: count_distinct, _type_hint: number,
-        filters: {case_management.priority: Low}}]
+    dynamic_fields:
+    - category: measure
+      label: High Priority
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: high_priority
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: High
+    - category: measure
+      label: Medium Priority
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: medium_priority
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Medium
+    - category: measure
+      label: Low Priority
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: low_priority
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.priority: Low
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -202,7 +243,6 @@
     x_axis_label: Month
     hide_legend: false
     font_size: '10'
-    series_types: {}
     series_colors:
       low_priority: "#FFFEC7"
       medium_priority: "#FFDF64"
@@ -236,9 +276,17 @@
       case_management.case_is_closed: 'No'
     sorts: [open_cases desc 0]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Open Cases,
-        value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: open_cases, type: count_distinct, _type_hint: number}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: open_cases
+      type: count_distinct
+      _type_hint: number
     value_labels: legend
     label_type: labPer
     inner_radius: 65
@@ -249,9 +297,6 @@
         steps: 5
         reverse: false
     series_colors: {}
-    series_labels:
-      'null': Unknown
-    series_types: {}
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -328,7 +373,6 @@
         tickDensityCustom: 5, type: linear}]
     x_axis_label: Month
     font_size: '10'
-    series_types: {}
     series_colors: {}
     label_color: ["#80868B"]
     x_axis_datetime_label: "%b %y"
@@ -378,7 +422,6 @@
     header_font_size: 12
     rows_font_size: 12
     defaults_version: 1
-    series_types: {}
     hidden_fields: []
     y_axes: []
     listen: {}
@@ -426,16 +469,32 @@
       case_management.case_is_closed: 'No'
     sorts: [priority_sort_order, case_age_days desc, case_status_sort_order]
     limit: 500
-    dynamic_fields: [{category: dimension, expression: 'diff_days(${case_management.case_created_date},now())',
-        label: Case Age (Days), value_format: !!null '', value_format_name: !!null '',
-        dimension: case_age_days, _kind_hint: dimension, _type_hint: number}, {category: dimension,
-        expression: 'case(when(${case_management.priority}="High","1"),when(${case_management.priority}="Medium","2"),when(${case_management.priority}="Low","3"),"Unknown")',
-        label: Priority Sort Order, value_format: !!null '', value_format_name: !!null '',
-        dimension: priority_sort_order, _kind_hint: dimension, _type_hint: string},
-      {category: dimension, expression: 'case(when(${case_management.case_status}="Escalated","1"),when(${case_management.case_status}="Assigned","2"),when(${case_management.case_status}="New","3"),when(${case_management.case_status}="Waiting
-          for customer","4"),"Unknown")', label: Case Status Sort Order, value_format: !!null '',
-        value_format_name: !!null '', dimension: case_status_sort_order, _kind_hint: dimension,
-        _type_hint: string}]
+    dynamic_fields:
+    - category: dimension
+      expression: diff_days(${case_management.case_created_date},now())
+      label: Case Age (Days)
+      value_format:
+      value_format_name:
+      dimension: case_age_days
+      _kind_hint: dimension
+      _type_hint: number
+    - category: dimension
+      expression: case(when(${case_management.priority}="High","1"),when(${case_management.priority}="Medium","2"),when(${case_management.priority}="Low","3"),"Unknown")
+      label: Priority Sort Order
+      value_format:
+      value_format_name:
+      dimension: priority_sort_order
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      expression: case(when(${case_management.case_status}="Escalated","1"),when(${case_management.case_status}="Assigned","2"),when(${case_management.case_status}="New","3"),when(${case_management.case_status}="Waiting
+        for customer","4"),"Unknown")
+      label: Case Status Sort Order
+      value_format:
+      value_format_name:
+      dimension: case_status_sort_order
+      _kind_hint: dimension
+      _type_hint: string
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -456,7 +515,6 @@
     show_row_totals: true
     truncate_header: false
     series_labels:
-      case_management.user_full_name: Case Owner
       case_management.case_created_date: Case Created Date
       case_management.case_type: Case Type
       case_management.case_status: Case Status
@@ -494,7 +552,6 @@
     show_silhouette: false
     totals_color: "#808080"
     defaults_version: 1
-    series_types: {}
     hidden_fields: [priority_sort_order, case_status_sort_order]
     y_axes: []
     note_state: collapsed
@@ -519,14 +576,32 @@
     type: single_value
     fields: [unassigned_cases, open_cases]
     limit: 500
-    dynamic_fields: [{category: measure, expression: !!null '', label: Unassigned
-          Cases, value_format: !!null '', value_format_name: !!null '', based_on: case_management.count_caseId,
-        _kind_hint: measure, measure: unassigned_cases, type: count_distinct, _type_hint: number,
-        filters: {case_management.agent_is_assigned: 'No', case_management.case_is_closed: 'No'}},
-      {category: measure, expression: !!null '', label: Open Cases, value_format: !!null '',
-        value_format_name: !!null '', based_on: case_management.count_caseId, _kind_hint: measure,
-        measure: open_cases, type: count_distinct, _type_hint: number, filters: {
-          case_management.case_is_closed: 'No'}}]
+    dynamic_fields:
+    - category: measure
+      expression:
+      label: Unassigned Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: unassigned_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.agent_is_assigned: 'No'
+        case_management.case_is_closed: 'No'
+    - category: measure
+      expression:
+      label: Open Cases
+      value_format:
+      value_format_name:
+      based_on: case_management.count_caseId
+      _kind_hint: measure
+      measure: open_cases
+      type: count_distinct
+      _type_hint: number
+      filters:
+        case_management.case_is_closed: 'No'
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -560,7 +635,7 @@
   - name: Case Created Date
     title: Case Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:

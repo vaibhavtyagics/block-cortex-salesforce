@@ -21,7 +21,7 @@ view: case_management {
       quarter,
       year
     ]
-    sql: ${TABLE}.AccountCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.AccountCreatedDatestamp, INTERVAL 268 DAY) ;;
   }
 
   # Here's what a typical dimension looks like in LookML.
@@ -112,7 +112,7 @@ view: case_management {
       quarter,
       year
     ]
-    sql: ${TABLE}.CaseCreatedDatestamp ;;
+    sql: DATE_ADD(${TABLE}.CaseCreatedDatestamp, INTERVAL 268 DAY );;
   }
 
 dimension: subject {

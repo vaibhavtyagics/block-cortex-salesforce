@@ -43,19 +43,13 @@
     truncate_header: false
     series_labels:
       sales_activities_engagement.lead_created_date_date: Lead Created Date
-      sales_activities_engagement.created_date_date: Activity Date
-      sales_activities_engagement.count_lead: Total Lead Owner
       sales_activities_engagement.count_lead_id: Total Leads
       sales_activities_engagement.count_activity: No. of Followups
       sales_activities_engagement.activity_per_lead: Follow-Up Contact Rate per Lead
       sales_activities_engagement.activity_per_lead_owner: Follow-Ups per Lead Owner
       sales_activities_engagement.count_lead_owner: Total Lead Owners
-    series_cell_visualizations:
-      sales_activities_engagement.count_lead:
-        is_active: false
     hidden_fields: [sales_activities_engagement.lead_id]
     defaults_version: 1
-    series_types: {}
     truncate_column_names: false
     y_axes: []
     listen:
@@ -74,7 +68,7 @@
   - name: Lead Created Date
     title: Lead Created Date
     type: field_filter
-    default_value: this year to second
+    default_value: 365 day
     allow_multiple_values: true
     required: false
     ui_config:
